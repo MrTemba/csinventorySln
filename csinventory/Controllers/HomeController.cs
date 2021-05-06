@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using csinventory.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace csinventory.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private IInventoryRepository repository;
+        public HomeController(IInventoryRepository repo)
         {
-            return View();
+            repository = repo;
         }
+        public IActionResult Index() => View(repository.Parts);
     }
 }

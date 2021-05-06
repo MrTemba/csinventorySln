@@ -52,6 +52,7 @@ namespace csinventory
                 });*/
                 endpoints.MapDefaultControllerRoute();
             });
+            SeedData.EnsurePopulated(app);
         }
     }
 }
