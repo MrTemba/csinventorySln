@@ -1,0 +1,48 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col">
+            NAME
+        </div>
+        <div class="col-3">
+            DESCRIPTION
+        </div>
+        <div class="col">
+            QUANTITY
+        </div>
+        <div class="col">
+            PART NUMBER
+        </div>
+        <div class="col">
+            UNIT COST
+        </div>
+        <div class="col">
+            TOTAL COST
+        </div>
+    </div>
+
+    @foreach (var p in Model.Parts)
+    {
+
+        <div class="row">
+            <div class="col">
+                @p.Name
+            </div>
+            <div class="col-3">
+                @p.Description
+            </div>
+            <div class="col">
+                @p.Quantity
+            </div>
+            <div class="col">
+                @p.PartNumber
+            </div>
+            <div class="col">
+                @p.UnitCost.ToString("c")
+            </div>
+            <div class="col">
+                @p.TotalCost.ToString("c")
+            </div>
+        </div>
+
+    }
+</div>
