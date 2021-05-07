@@ -23,10 +23,26 @@ namespace csinventory.Models
                 context.Parts.AddRange(
                 new Part
                 {
-                    Name = "Test",
-                    Description = "This is a sample Part",
-                    Quantity = 1,
-                    PartNumber = 0000,
+                    Name = "Epp USB",
+                    Description = "EPP USB",
+                    Quantity = 18,
+                    PartNumber = 4450745408,
+                    UnitCost = 0,
+                    TotalCost = 0
+                }, new Part
+                {
+                    Name = "Pick Module",
+                    Description = "PICK MODULE(S1)",
+                    Quantity = 70,
+                    PartNumber = 4450728164,
+                    UnitCost = 0,
+                    TotalCost = 0
+                }, new Part
+                {
+                    Name = "Escrow & Reservoir",
+                    Description = "ESCROW & RESERVOIR NARROW",
+                    Quantity = 2,
+                    PartNumber = 90033246,
                     UnitCost = 0,
                     TotalCost = 0
                 });

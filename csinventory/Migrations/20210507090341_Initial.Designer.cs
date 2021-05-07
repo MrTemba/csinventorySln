@@ -9,7 +9,7 @@ using csinventory.Models;
 namespace csinventory.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20210506140636_Initial")]
+    [Migration("20210507090341_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,8 @@ namespace csinventory.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PartNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("PartNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

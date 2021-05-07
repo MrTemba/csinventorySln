@@ -31,8 +31,8 @@ namespace csinventory.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PartNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("PartNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
