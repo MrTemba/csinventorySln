@@ -14,6 +14,7 @@ namespace csinventory.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReWorkable = table.Column<bool>(type: "bit", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     PartNumber = table.Column<long>(type: "bigint", nullable: false),
                     UnitCost = table.Column<decimal>(type: "decimal(8,2)", nullable: false),

@@ -25,6 +25,7 @@ namespace csinventory.Models
                 {
                     Name = "Epp USB",
                     Description = "EPP USB",
+                    ReWorkable = false,
                     Quantity = 18,
                     PartNumber = 4450745408,
                     UnitCost = 0,
@@ -33,6 +34,7 @@ namespace csinventory.Models
                 {
                     Name = "Pick Module",
                     Description = "PICK MODULE(S1)",
+                    ReWorkable = true,
                     Quantity = 70,
                     PartNumber = 4450728164,
                     UnitCost = 0,
@@ -41,6 +43,7 @@ namespace csinventory.Models
                 {
                     Name = "Escrow & Reservoir",
                     Description = "ESCROW & RESERVOIR NARROW",
+                    ReWorkable = false,
                     Quantity = 2,
                     PartNumber = 90033246,
                     UnitCost = 0,

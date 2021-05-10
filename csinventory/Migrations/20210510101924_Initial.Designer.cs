@@ -9,7 +9,7 @@ using csinventory.Models;
 namespace csinventory.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20210507090341_Initial")]
+    [Migration("20210510101924_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace csinventory.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<bool>("ReWorkable")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("TotalCost")
                         .HasColumnType("decimal(8,2)");

@@ -1,10 +1,14 @@
-﻿<div class="container">
+﻿@model PartsListViewModel
+<div class="container">
     <div class="row">
         <div class="col">
             NAME
         </div>
-        <div class="col-3">
+        <div class="col-2">
             DESCRIPTION
+        </div>
+        <div class="col">
+            REWORKABLE
         </div>
         <div class="col">
             QUANTITY
@@ -21,28 +25,32 @@
     </div>
 
     @foreach (var p in Model.Parts)
+
     {
 
-        <div class="row">
-            <div class="col">
-                @p.Name
-            </div>
-            <div class="col-3">
-                @p.Description
-            </div>
-            <div class="col">
-                @p.Quantity
-            </div>
-            <div class="col">
-                @p.PartNumber
-            </div>
-            <div class="col">
-                @p.UnitCost.ToString("c")
-            </div>
-            <div class="col">
-                @p.TotalCost.ToString("c")
-            </div>
-        </div>
+<div class="row">
+    <div class="col">
+        @p.Name
+    </div>
+    <div class="col-2">
+        @p.Description
+    </div>
+    <div class="col">
+        @(p.ReWorkable?"Yes":"No")
+    </div>
+    <div class="col">
+        @p.Quantity
+    </div>
+    <div class="col">
+        @p.PartNumber
+    </div>
+    <div class="col">
+        @p.UnitCost.ToString("c")
+    </div>
+    <div class="col">
+        @p.TotalCost.ToString("c")
+    </div>
+</div>
 
     }
 </div>

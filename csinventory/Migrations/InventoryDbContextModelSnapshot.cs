@@ -37,6 +37,9 @@ namespace csinventory.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ReWorkable")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("TotalCost")
                         .HasColumnType("decimal(8,2)");
 
