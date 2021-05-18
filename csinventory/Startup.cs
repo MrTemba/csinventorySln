@@ -50,6 +50,9 @@ namespace csinventory
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });*/
+                endpoints.MapControllerRoute("pagination",
+                    "Parts/Page{partPage}",
+                    new { Controller = "Home", action = "Index" });
                 endpoints.MapDefaultControllerRoute();
             });
             SeedData.EnsurePopulated(app);

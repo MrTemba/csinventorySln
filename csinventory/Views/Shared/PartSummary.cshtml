@@ -1,0 +1,95 @@
+﻿@model PartsListViewModel
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th class="col-2">DESCRIPTION</th>
+            <th>REWORKABLE</th>
+            <th>QUANTITY</th>
+            <th>PART NUMBER</th>
+            <th>UNIT COST</th>
+            <th>TOTAL COST</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Parts)
+        {
+        <tr>
+            <td>@p.Name</td>
+            <td class="col-2">@p.Description</td>
+            <td>@(p.ReWorkable?"Yes":"No")</td>
+            <td>
+                @p.Quantity
+            </td>
+            <td>@p.PartNumber</td>
+            <td>@p.UnitCost.ToString("c")</td>
+            <td>@((p.UnitCost * p.Quantity).ToString("c"))</td>
+        </tr>
+        }
+    </tbody>
+    @*<tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.Cart.ComputeTotalValue().ToString("c")
+            </td>
+        </tr>
+    </tfoot>*@
+</table>
+
+@*<div class="container">
+    <div class="row">
+        <div class="col">
+            NAME
+        </div>
+        <div class="col-2">
+            DESCRIPTION
+        </div>
+        <div class="col">
+            REWORKABLE
+        </div>
+        <div class="col">
+            QUANTITY
+        </div>
+        <div class="col">
+            PART NUMBER
+        </div>
+        <div class="col">
+            UNIT COST
+        </div>
+        <div class="col">
+            TOTAL COST
+        </div>
+    </div>
+
+    @foreach (var p in Model.Parts)
+
+    {
+
+<div class="row">
+    <div class="col">
+        @p.Name
+    </div>
+    <div class="col-2">
+        @p.Description
+    </div>
+    <div class="col">
+        @(p.ReWorkable?"Yes":"No")
+    </div>
+    <div class="col">
+        @p.Quantity
+    </div>
+    <div class="col">
+        @p.PartNumber
+    </div>
+    <div class="col">
+        @p.UnitCost.ToString("c")
+    </div>
+    <div class="col">
+        @p.TotalCost.ToString("c")
+    </div>
+</div>
+
+    }
+</div>*@

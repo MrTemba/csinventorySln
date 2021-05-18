@@ -11,8 +11,9 @@ namespace csinventory.Models
         public long PartID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public bool ReWorkable { get; set; }
         public int Quantity { get; set; }
-        public int PartNumber { get; set; }
+        public long PartNumber { get; set; }
         [Column(TypeName="decimal(8,2)")]
         public decimal UnitCost { get; set; }
         [Column(TypeName = "decimal(8,2)")]
