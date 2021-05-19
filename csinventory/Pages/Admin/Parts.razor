@@ -26,7 +26,7 @@
             <td>@(p.ReWorkable?"YES":"NO")</td>
             <td>@p.Quantity</td>
             <td>@p.PartNumber</td>
-            <td>@p.UnitCost.ToString("c")</td>
+            <td>@p.UnitCost.ToString("c",CultureInfo.CreateSpecificCulture("en-ZM"))</td>
             <td>
                 <NavLink class="btn btn-info btn-sm"
                          href="@GetDetailsUrl(p.PartID)">

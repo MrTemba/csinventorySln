@@ -23,8 +23,8 @@
                 @p.Quantity
             </td>
             <td>@p.PartNumber</td>
-            <td>@p.UnitCost.ToString("c")</td>
-            <td>@((p.UnitCost * p.Quantity).ToString("c"))</td>
+            <td>@p.UnitCost.ToString("c", CultureInfo.CreateSpecificCulture("en-ZM"))</td>
+            <td>@((p.UnitCost * p.Quantity).ToString("c", CultureInfo.CreateSpecificCulture("en-ZM")))</td>
         </tr>
         }
     </tbody>

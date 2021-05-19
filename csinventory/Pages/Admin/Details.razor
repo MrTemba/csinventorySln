@@ -8,7 +8,7 @@
         <tr><th>Reworkable</th><td>@(Part.ReWorkable?"YES":"NO")</td></tr>
         <tr><th>Quantity</th><td>@Part.Quantity</td></tr>
         <tr><th>Part Number</th><td>@Part.PartNumber</td></tr>
-        <tr><th>Unit Cost</th><td>@Part.UnitCost.ToString("C")</td></tr>
+        <tr><th>Unit Cost</th><td>@Part.UnitCost.ToString("C", CultureInfo.CreateSpecificCulture("en-ZM"))</td></tr>
     </tbody>
 </table>
 <NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
