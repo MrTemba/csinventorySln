@@ -28,7 +28,7 @@
             <td>@p.PartNumber</td>
             <td>@p.UnitCost.ToString("c")</td>
             <td>
-                <NavLink class="btn btn-info btn-sm" 
+                <NavLink class="btn btn-info btn-sm"
                          href="@GetDetailsUrl(p.PartID)">
                     Details
                 </NavLink>
@@ -36,6 +36,10 @@
                          href="@GetEditUrl(p.PartID)">
                     Edit
                 </NavLink>
+                <button class="btn btn-danger btn-sm"
+                        @onclick="@(e => DeletePart(p))">
+                    Delete
+                </button>
             </td>
         </tr>
             }
@@ -59,6 +63,11 @@
     public async Task UpdateData()
     {
         PartData = await Repository.Parts.ToListAsync();
+    }
+    public async Task DeletePart(Part p)
+    {
+        Repository.DeletePart(p);
+        await UpdateData();
     }
     public string GetDetailsUrl(long id) => $"/admin/parts/details/{id}";
     public string GetEditUrl(long id) => $"/admin/parts/edit/{id}";
