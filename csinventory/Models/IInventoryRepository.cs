@@ -8,5 +8,9 @@ namespace csinventory.Models
     public interface IInventoryRepository
     {
         IQueryable<Part> Parts { get; }
+
+        void SavePart(Part p);
+        void CreatePart(Part p);
+        void DeletePart(Part p);
     }
 }

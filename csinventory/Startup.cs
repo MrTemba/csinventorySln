@@ -61,6 +61,8 @@ namespace csinventory
                     new { Controller = "Home", action = "Index", partPage = 1 });
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
             SeedData.EnsurePopulated(app);
         }

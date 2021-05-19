@@ -1,0 +1,65 @@
+﻿@page "/admin/parts"
+@page "/admin"
+@inherits OwningComponentBase<IInventoryRepository>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Reworkable</th>
+            <th>Quantity</th>
+            <th>Part Number</th>
+            <th>Unit Cost</th>
+            <th colspan="2"/>
+        </tr>
+    </thead>
+    <tbody>
+        @if (PartData?.Count() > 0)
+        {
+            @foreach (Part p in PartData)
+            {
+        <tr>
+            <td>@p.PartID</td>
+            <td>@p.Name</td>
+            <td>@p.Description</td>
+            <td>@(p.ReWorkable?"YES":"NO")</td>
+            <td>@p.Quantity</td>
+            <td>@p.PartNumber</td>
+            <td>@p.UnitCost.ToString("c")</td>
+            <td>
+                <NavLink class="btn btn-info btn-sm" 
+                         href="@GetDetailsUrl(p.PartID)">
+                    Details
+                </NavLink>
+                <NavLink class="btn btn-warning btn-sm"
+                         href="@GetEditUrl(p.PartID)">
+                    Edit
+                </NavLink>
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9" class="text-center">No Parts</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<NavLink class="btn btn-primary" href="/admin/parts/create">Create</NavLink>
+@code {
+    public IInventoryRepository Repository => Service;
+    public IEnumerable<Part> PartData { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        PartData = await Repository.Parts.ToListAsync();
+    }
+    public string GetDetailsUrl(long id) => $"/admin/parts/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/parts/edit/{id}";
+}
