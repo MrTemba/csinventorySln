@@ -30,6 +30,8 @@ namespace csinventory
                 Configuration["ConnectionStrings:CSInventoryConnection"]);
             });
             services.AddScoped<IInventoryRepository, EFInventoryRepository>();
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +56,7 @@ namespace csinventory
                     "Parts/Page{partPage}",
                     new { Controller = "Home", action = "Index" });
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
             SeedData.EnsurePopulated(app);
         }
