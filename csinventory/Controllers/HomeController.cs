@@ -27,7 +27,10 @@ namespace csinventory.Controllers
             {
                 CurrentPage = partPage,
                 ItemsPerPage = PageSize,
-                TotalItems = repository.Parts.Count()
+                    TotalItems = category == null ?
+                        repository.Parts.Count() :
+                        repository.Parts.Where(e =>
+                            e.ReWorkable == category).Count()
             },
             CurrentCategory = category.ToString()
             });

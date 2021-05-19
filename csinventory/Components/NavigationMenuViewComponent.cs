@@ -3,14 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using csinventory.Models;
 
 namespace csinventory.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {
-        public string Invoke()
+        private IInventoryRepository repository;
+
+        public NavigationMenuViewComponent(IInventoryRepository repo)
         {
-            return "Hello from the Nav View Component";
+            repository = repo;
+        }
+        public IViewComponentResult Invoke()
+        {
+            ViewBag.SelectedCategory = RouteData?.Values["category"];
+            return View(repository.Parts
+            .Select(x => x.ReWorkable)
+            .Distinct()
+            .OrderBy(x => x));
         }
     }
 }
