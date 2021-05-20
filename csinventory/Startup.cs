@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace csinventory
 {
@@ -25,10 +26,15 @@ namespace csinventory
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<InventoryDbContext>(opts => {
-                opts.UseSqlServer(
-                Configuration["ConnectionStrings:CSInventoryConnection"]);
-            });
+            services.AddDbContext<InventoryDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration["ConnectionStrings:CSInventoryConnection"])
+                );
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration["ConnectionStrings:IdentityConnection"])
+                );
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
             services.AddScoped<IInventoryRepository, EFInventoryRepository>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -45,6 +51,9 @@ namespace csinventory
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
