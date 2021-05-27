@@ -16,9 +16,10 @@ namespace csinventory.Controllers
         {
             repository = repo;
         }
-        public ViewResult Index(int partPage = 1) => View(
+        public ViewResult Index(bool? category = null, int partPage = 1) => View(
             new PartsListViewModel { 
             Parts = repository.Parts
+            .Where(p => category == null || p.ReWorkable == category)
             .OrderBy(p=>p.PartID)
             .Skip((partPage-1)*PageSize)
             .Take(PageSize),
@@ -26,8 +27,12 @@ namespace csinventory.Controllers
             {
                 CurrentPage = partPage,
                 ItemsPerPage = PageSize,
-                TotalItems = repository.Parts.Count()
-            }
+                    TotalItems = category == null ?
+                        repository.Parts.Count() :
+                        repository.Parts.Where(e =>
+                            e.ReWorkable == category).Count()
+            },
+            CurrentCategory = category.ToString()
             });
     }
 }

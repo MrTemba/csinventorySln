@@ -1,0 +1,81 @@
+﻿@page "/admin/parts/edit/{id:long}"
+@page "/admin/parts/create"
+@inherits OwningComponentBase<IInventoryRepository>
+<style>
+        div.validation-message {
+        color: rgb(220, 53, 69);
+        font-weight: 500
+    }
+</style>
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Part</h3>
+<EditForm Model="Part" OnValidSubmit="SavePart">
+    <DataAnnotationsValidator/>
+    @if (Part.PartID != 0)
+    {
+        <div class="form-group">
+            <label>ID</label>
+            <input class="form-control" disabled value="@Part.PartID" />
+        </div>
+    }
+    <div class="form-group">
+        <label>Name</label>
+        <ValidationMessage For="@(() => Part.Name)" />
+        <InputText class="form-control" @bind-Value="Part.Name" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <ValidationMessage For="@(() => Part.Description)" />
+        <InputText class="form-control" @bind-Value="Part.Description" />
+    </div>
+    <div class="form-group">
+        <label>Reworkable</label>
+        <InputCheckbox class="form-control" @bind-Value="Part.ReWorkable" />
+    </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <ValidationMessage For="@(() => Part.Quantity)" />
+        <InputNumber class="form-control" @bind-Value="Part.Quantity" />
+    </div>
+    <div class="form-group">
+        <label>Part Number</label>
+        <ValidationMessage For="@(() => Part.PartNumber)" />
+        <InputNumber class="form-control" @bind-Value="Part.PartNumber" />
+    </div>
+    <div class="form-group">
+        <label>Unit Cost</label>
+        <ValidationMessage For="@(() => Part.UnitCost)" />
+        <InputNumber class="form-control" @bind-Value="Part.UnitCost" />
+    </div>
+    <button type="submit" class="btn btn-@ThemeColor">Save</button>
+    <NavLink class="btn btn-secondary" href="/admin/parts">Cancel</NavLink>
+</EditForm>
+
+@code {
+    public IInventoryRepository Repository => Service;
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+    [Parameter]
+    public long Id { get; set; } = 0;
+    public Part Part { get; set; } = new Part();
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Part = Repository.Parts.FirstOrDefault(p => p.PartID == Id);
+        }
+    }
+    public void SavePart()
+    {
+        if (Id == 0)
+        {
+            Repository.CreatePart(Part);
+        }
+        else
+        {
+            Repository.SavePart(Part);
+        }
+        NavManager.NavigateTo("/admin/parts");
+    }
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

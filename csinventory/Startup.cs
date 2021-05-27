@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace csinventory
 {
@@ -25,11 +26,18 @@ namespace csinventory
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<InventoryDbContext>(opts => {
-                opts.UseSqlServer(
-                Configuration["ConnectionStrings:CSInventoryConnection"]);
-            });
+            services.AddDbContext<InventoryDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration["ConnectionStrings:CSInventoryConnection"])
+                );
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration["ConnectionStrings:IdentityConnection"])
+                );
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
             services.AddScoped<IInventoryRepository, EFInventoryRepository>();
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,18 +52,29 @@ namespace csinventory
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                /*endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });*/
+                
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/Page{partPage:int}",
+                    new { Controller = "Home", action = "Index" });
+                endpoints.MapControllerRoute("page", "Page{partPage:int}",
+                    new { Controller = "Home", action = "Index", partPage = 1 });
+                endpoints.MapControllerRoute("category", "{category}",
+                    new { Controller = "Home", action = "Index", partPage = 1 });
                 endpoints.MapControllerRoute("pagination",
                     "Parts/Page{partPage}",
-                    new { Controller = "Home", action = "Index" });
+                    new { Controller = "Home", action = "Index", partPage = 1 });
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

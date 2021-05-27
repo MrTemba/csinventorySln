@@ -9,5 +9,6 @@ namespace csinventory.Models.ViewModels
     {
         public IEnumerable<Part> Parts { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public string CurrentCategory { get; set; }
     }
 }
