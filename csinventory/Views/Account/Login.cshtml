@@ -5,31 +5,76 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>CS Inventory</title>
-    <link href="~/lib/bootstrap-4.6.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-4.6.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
-        <span class="navbar-brand ml-2">CS INVENTORY LOGIN</span>
-    </div>
-    <div class="m-1 p-1">
-        <div class="text-danger" asp-validation-summary="All"></div>
-        <form asp-action="Login" asp-controller="Account" method="post">
-            <input type="hidden" asp-for="ReturnUrl" />
-            <div class="form-group">
-                <label asp-for="Name"></label>
-                <div asp-validation-for="Name" class="text-danger"></div>
-                <input asp-for="Name" class="form-control" />
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">CS INVENTORY LOGIN</h2>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <div asp-validation-for="Password" class="text-danger"></div>
-                <input asp-for="Password" type="password" class="form-control" />
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-200">
+                                <div class="text-danger" asp-validation-summary="All"></div>
+                            </div>
+                        </div>
+                        <form asp-action="Login" class="login-form" asp-controller="Account" method="post">
+                            <input type="hidden" asp-for="ReturnUrl" />
+                            <div class="form-group">
+                                <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-file-person"></i></div>
+                                <div asp-validation-for="Name" class="text-danger"></div>
+                                <input asp-for="Name" type="text" class="form-control rounded-left" placeholder="Username" required/>
+                            </div>
+                            <div class="form-group">
+                                <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-lock"></i></div>
+                                <div asp-validation-for="Password" class="text-danger"></div>
+                                <input asp-for="Password" type="password" class="form-control rounded-left" placeholder="Password" required/>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="w-100">
+                                    <div class="w-100">
+                                        <a href="/" class="btn btn-outline-dark"><i class="bi bi-arrow-bar-left"></i></a>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-flex justify-content-end">
+                                    <button class="btn btn-outline-primary rounded submit" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-primary" type="submit">Log In</button>
-        </form>
-        
-            <a class="btn btn-danger text-right" href="/">CANCEL</a>
-        
-    </div>
+        </div>
+    </section>
+
+        @*<div class="bg-dark text-white p-2">
+                <span class="navbar-brand ml-2">CS INVENTORY LOGIN</span>
+            </div>
+            <div class="m-1 p-1">
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <form asp-action="Login" asp-controller="Account" method="post">
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <div asp-validation-for="Name" class="text-danger"></div>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <div asp-validation-for="Password" class="text-danger"></div>
+                        <input asp-for="Password" type="password" class="form-control" />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Log In</button>
+                </form>
+
+                    <a class="btn btn-danger text-right" href="/">CANCEL</a>
+
+            </div>*@
 </body>
 </html>

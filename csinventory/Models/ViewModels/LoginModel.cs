@@ -8,7 +8,7 @@ namespace csinventory.Models.ViewModels
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage = "Username is required")]
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
