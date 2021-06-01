@@ -37,7 +37,7 @@ namespace csinventory.Controllers
                     }
                 }
             }
-            ModelState.AddModelError("", "Invalid name or password");
+            ModelState.AddModelError("", "Invalid Username or Password");
             return View(loginModel);
         }
         [Authorize]
