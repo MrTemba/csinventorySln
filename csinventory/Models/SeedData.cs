@@ -51,6 +51,18 @@ namespace csinventory.Models
                 });
                 context.SaveChanges();
             }
+            if (!context.Branches.Any())
+            {
+                context.Branches.AddRange(
+                    new Branch
+                    {
+                        BranchAddress = "Necor House, Lubambe Rd, Lusaka",
+                        BranchName= "NECOR House",
+                        BranchManager="Mr Clement"
+                    }
+                 );
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model BranchesListViewModel
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Branches Summary</h6>
+    </div>
+    <div class="card-body">
+
+        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#CreateBranchModal">Add Branch</button>
+        <div class="table-responsive">
+            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Manager</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var b in Model.Branches)
+                    {
+                        <tr>
+                            <td>@b.BranchName</td>
+                            <td>@b.BranchAddress</td>
+                            <td>@b.BranchManager</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

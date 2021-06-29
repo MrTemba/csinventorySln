@@ -1,88 +1,70 @@
 ﻿@model PartsListViewModel
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>NAME</th>
-            <th class="col-2">DESCRIPTION</th>
-            <th>REWORKABLE</th>
-            <th>QUANTITY</th>
-            <th>PART NUMBER</th>
-            <th>UNIT COST</th>
-            <th>TOTAL COST</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in Model.Parts)
-        {
-        <tr>
-            <td>@p.Name</td>
-            <td class="col-2">@p.Description</td>
-            <td>@(p.ReWorkable?"Yes":"No")</td>
-            <td>
-                @p.Quantity
-            </td>
-            <td>@p.PartNumber</td>
-            <td>@p.UnitCost.ToString("c", CultureInfo.CreateSpecificCulture("en-ZM"))</td>
-            <td>@((p.UnitCost * p.Quantity).ToString("c", CultureInfo.CreateSpecificCulture("en-ZM")))</td>
-        </tr>
-        }
-    </tbody>
-    
-</table>
-
-@*<div class="container">
-    <div class="row">
-        <div class="col">
-            NAME
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Parts Summary</h6>
         </div>
-        <div class="col-2">
-            DESCRIPTION
-        </div>
-        <div class="col">
-            REWORKABLE
-        </div>
-        <div class="col">
-            QUANTITY
-        </div>
-        <div class="col">
-            PART NUMBER
-        </div>
-        <div class="col">
-            UNIT COST
-        </div>
-        <div class="col">
-            TOTAL COST
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>REWORKABLE</th>
+                            <th>QUANTITY</th>
+                            <th>PART NUMBER</th>
+                            <th>UNIT COST</th>
+                            <th>TOTAL COST</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model.Parts)
+                        {
+                            <tr>
+                                <td>@p.Name</td>
+                                <td>@p.Description</td>
+                                <td>@(p.ReWorkable?"Yes":"No")</td>
+                                <td>
+                                    @p.Quantity
+                                </td>
+                                <td>@p.PartNumber</td>
+                                <td>@p.UnitCost.ToString("c", CultureInfo.CreateSpecificCulture("en-ZM"))</td>
+                                <td>@((p.UnitCost * p.Quantity).ToString("c", CultureInfo.CreateSpecificCulture("en-ZM")))</td>
+                            </tr>
+                        }
+                    </tbody>
+                    </table>
+                </div>
         </div>
     </div>
 
-    @foreach (var p in Model.Parts)
+    @*<table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th class="col-2">DESCRIPTION</th>
+                    <th>REWORKABLE</th>
+                    <th>QUANTITY</th>
+                    <th>PART NUMBER</th>
+                    <th>UNIT COST</th>
+                    <th>TOTAL COST</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Parts)
+                {
+                <tr>
+                    <td>@p.Name</td>
+                    <td class="col-2">@p.Description</td>
+                    <td>@(p.ReWorkable?"Yes":"No")</td>
+                    <td>
+                        @p.Quantity
+                    </td>
+                    <td>@p.PartNumber</td>
+                    <td>@p.UnitCost.ToString("c", CultureInfo.CreateSpecificCulture("en-ZM"))</td>
+                    <td>@((p.UnitCost * p.Quantity).ToString("c", CultureInfo.CreateSpecificCulture("en-ZM")))</td>
+                </tr>
+                }
+            </tbody>
 
-    {
-
-<div class="row">
-    <div class="col">
-        @p.Name
-    </div>
-    <div class="col-2">
-        @p.Description
-    </div>
-    <div class="col">
-        @(p.ReWorkable?"Yes":"No")
-    </div>
-    <div class="col">
-        @p.Quantity
-    </div>
-    <div class="col">
-        @p.PartNumber
-    </div>
-    <div class="col">
-        @p.UnitCost.ToString("c")
-    </div>
-    <div class="col">
-        @p.TotalCost.ToString("c")
-    </div>
-</div>
-
-    }
-</div>*@
+        </table>*@

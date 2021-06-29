@@ -57,17 +57,31 @@ namespace csinventory
 
             app.UseEndpoints(endpoints =>
             {
-                
-                endpoints.MapControllerRoute("catpage",
+                endpoints.MapControllerRoute(
+                    "Dashboard",
+                    "/",
+                    new { Controller = "Dashboard", action = "Index" }
+                    );
+                endpoints.MapControllerRoute(
+                    "catpage",
                     "{category}/Page{partPage:int}",
-                    new { Controller = "Home", action = "Index" });
-                endpoints.MapControllerRoute("page", "Page{partPage:int}",
-                    new { Controller = "Home", action = "Index", partPage = 1 });
-                endpoints.MapControllerRoute("category", "{category}",
-                    new { Controller = "Home", action = "Index", partPage = 1 });
-                endpoints.MapControllerRoute("pagination",
+                    new { Controller = "Parts", action = "Index" }
+                    );
+                endpoints.MapControllerRoute(
+                    "page", 
+                    "Page{partPage:int}",
+                    new { Controller = "Parts", action = "Index", partPage = 1 }
+                    );
+                endpoints.MapControllerRoute(
+                    "category", 
+                    "{category}",
+                    new { Controller = "Parts", action = "Index", partPage = 1 }
+                    );
+                endpoints.MapControllerRoute(
+                    "pagination",
                     "Parts/Page{partPage}",
-                    new { Controller = "Home", action = "Index", partPage = 1 });
+                    new { Controller = "Parts", action = "Index", partPage = 1 }
+                    );
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
