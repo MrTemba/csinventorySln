@@ -19,12 +19,10 @@ namespace csinventory.Models
         [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid Quantity")]
         public int Quantity { get; set; }
         [Required]
-        [Range(1, long.MaxValue,
-            ErrorMessage = "Please specify a Part Number")]
+        [Range(1, long.MaxValue, ErrorMessage = "Please specify a Part Number")]
         public long PartNumber { get; set; }
         [Required]
-        [Range(0, double.MaxValue,
-            ErrorMessage = "Please enter a valid Price")]
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter a valid Price")]
         [Column(TypeName="decimal(8,2)")]
         public decimal UnitCost { get; set; }
         [Column(TypeName = "decimal(8,2)")]

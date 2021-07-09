@@ -11,5 +11,6 @@ namespace csinventory.Models
         public InventoryDbContext(DbContextOptions<InventoryDbContext> options)
         : base(options) { }
         public DbSet<Part> Parts { get; set; }
+        public DbSet<Branch> Branches { get; set; }
     }
 }

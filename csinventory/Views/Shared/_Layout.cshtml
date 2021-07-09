@@ -1,28 +1,130 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CS Inventory Management System">
+    <meta name="author" content="NECOR">
+
     <title>CS Inventory</title>
-    <link rel="stylesheet" href="~/lib/bootstrap-4.6.0/css/bootstrap.min.css" />   
+    <!-- Styles & Fonts-->
+    <link rel="stylesheet" href="~/lib/datatables-1.10.21/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome-5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+
+    <!-- Custom Styles-->
+    <link href="~/assets/css/sb-admin-2.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container-fluid bg-dark text-white">
-        <div class="row">
-            <div class="col">
-                <span class="navbar-brand ml-2">CS INVENTORY</span>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <li class="sidebar-brand d-flex align-items-center justify-content-center">
+                <a class="sidebar-brand-icon text-light rotate-n-15" href="#page-top">
+                    <i class="fas fa-laugh-beam"></i>
+                </a>
+                <div class="sidebar-brand-text mx-3">CS Inventory</div>
+            </li>
+
+            <!-- Divider -->
+            <li class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+            @RenderSection("NavItems", false)
+
+            <!-- Divider -->
+            <li class="sidebar-divider my-0">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Addons
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                   aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screen:</h6>
+                        <a class="collapse-item" href="/admin">Login</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <li class="sidebar-divider d-none d-md-block">
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+
+                @RenderBody()
+
             </div>
-            <div class="col-2 text-right">
-                <a class="btn btn-sm btn-info" href="/Admin">Admin</a>
-            </div>
         </div>
+        <!-- End of Content Wrapper -->
+
     </div>
-    <div class="row m-1 p-1">
-        <div id="categories" class="col-3">
-            <vc:navigation-menu />
-        </div>
-        <div class="col-9">
-            @RenderBody()
-        </div>
-    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/lib/jquery-3.6.0/jquery.min.js"></script>
+    <script src="~/lib/bootstrap-4.6.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/lib/jquery-easing-1.4.1/jquery.easing.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/lib/Chart.js-3.3.2/chart.min.js"></script>
+    <script src="~/lib/datatables-1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/assets/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level custom scripts -->
+
+
 </body>
+    @*<body>
+            <div class="container-fluid bg-dark text-white">
+                <div class="row">
+                    <div class="col">
+                        <span class="navbar-brand ml-2">CS INVENTORY</span>
+                    </div>
+                    <div class="col-2 text-right">
+                        <a class="btn btn-sm btn-info" href="/Admin">Admin</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-1 p-1">
+                <div id="categories" class="col-3">
+                    <vc:navigation-menu />
+                </div>
+                <div class="col-9">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>*@
 </html>
